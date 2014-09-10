@@ -15,10 +15,14 @@ namespace BSPTree
 
 
             TheTree tree = new TheTree();
-            //  tree.printTree();
-            Console.WriteLine("------------");
-            tree.quickSort(0, tree.Length - 1, 0);
-            //  tree.printTree();
+            tree.splitArray(tree.GameObjects, tree.determinePivot(tree.GameObjects, 8, 0), 0);
+            foreach (GameObject go in tree.GameObjectList)
+            {
+                double x = go.getPosition(0);
+                double y = go.getPosition(1);
+
+                Console.WriteLine("(" + x + ", " + y + ")");
+            }
             Console.Read();
 
         }
