@@ -10,19 +10,17 @@ namespace BSPTree
     class Program
     {
         static void Main(string[] args)
-        {
-            Stopwatch stopWatch = new Stopwatch();
-
-
+        {            
             TheTree tree = new TheTree();
-            tree.splitArray(tree.GameObjects, tree.determinePivot(tree.GameObjects, 8, 0), 0);
-            foreach (GameObject go in tree.GameObjectList)
-            {
-                double x = go.getPosition(0);
-                double y = go.getPosition(1);
 
-                Console.WriteLine("(" + x + ", " + y + ")");
-            }
+            tree.printTree();
+
+            tree.quickSort(0, 7, 0);
+
+            tree.printTree();
+
+
+
             Console.Read();
 
         }
