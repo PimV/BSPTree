@@ -15,5 +15,7 @@ namespace BSPTree.Nodes
         {
             this.GameObject = gameObject;
         }
+
+
     }
 }
