@@ -64,28 +64,28 @@ namespace BSPTree
             this.gameObjects[7] = go8;
         }
 
-        public void quickSort(int begin, int end, int index)
+        public void quickSort(int left, int right, int index)
         {
-            int size = (end - begin) + 1;
+            int size = (right - left) + 1;
             if (size == 2)
             {
-                if (this.gameObjects[begin].getPosition(index) > this.gameObjects[end].getPosition(index))
+                if (this.gameObjects[left].getPosition(index) > this.gameObjects[right].getPosition(index))
                 {
-                    swap(begin, end);
+                    swap(left, right);
                 }
             }
             else if (size > 2)
             {
-                double pivot = medianOfThree(begin, end, index);
-                int middle = partition(begin, end, pivot, index);
+                double pivot = medianOfThree(left, right, index);
+                int partition = partitionIt(left, right, pivot, index);
 
                 index++;
                 if (index == GameObject.DIMENSION)
                 {
                     index = 0;
                 }
-                quickSort(begin, middle - 1, index);
-                quickSort(middle + 1, end, index);
+                quickSort(left, partition, index);
+                quickSort(partition + 1, right, index);
             }
         }
 
@@ -122,7 +122,7 @@ namespace BSPTree
             return this.gameObjects[right - 1].getPosition(index);
         }
 
-        public int partition(int left, int right, double pivot, int index)
+        public int partitionIt(int left, int right, double pivot, int index)
         {
             int leftMark = left;
             int rightMark = right - 1;
@@ -130,8 +130,14 @@ namespace BSPTree
             while (true)
             {
 
-                while (this.gameObjects[++leftMark].getPosition(index) < pivot) ;
-                while (this.gameObjects[--rightMark].getPosition(index) > pivot) ;
+                while (this.gameObjects[++leftMark].getPosition(index) < pivot)
+                {
+
+                }
+                while (this.gameObjects[--rightMark].getPosition(index) > pivot)
+                {
+
+                }
 
 
 

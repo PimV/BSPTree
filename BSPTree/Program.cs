@@ -10,7 +10,7 @@ namespace BSPTree
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
             TheTree tree = new TheTree();
 
             tree.printTree();
