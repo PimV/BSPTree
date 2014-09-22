@@ -12,11 +12,11 @@ namespace BSPTree
     {
         static void Main(string[] args)
         {
-            TheTree tree = new TheTree();
+            QuickSort tree = new QuickSort();
 
             tree.printTree();
 
-            tree.quickSort(0, 7, 0);
+            tree.bsp(0, 7, 0, tree.BspTree.Root);
 
             tree.printTree();
 

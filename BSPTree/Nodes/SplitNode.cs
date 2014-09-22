@@ -18,5 +18,6 @@ namespace BSPTree.Nodes
             this.RightChild = rightChild;
         }
 
+
     }
 }

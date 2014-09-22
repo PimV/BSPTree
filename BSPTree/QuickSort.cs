@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BSPTree.Nodes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,19 @@ using System.Threading.Tasks;
 
 namespace BSPTree
 {
-    public class TheTree
+    public class QuickSort
     {
         private GameObject[] gameObjects;
         private int amountOfGameObjects = 8;
         public int Length { get { return gameObjects.Length; } }
         public GameObject[] GameObjects { get { return gameObjects; } set { gameObjects = value; } }
         public List<GameObject> GameObjectList { get; set; }
+        public BSPTree BspTree { get; set; }
 
-        public TheTree()
+        public QuickSort()
         {
             this.gameObjects = new GameObject[this.amountOfGameObjects];
+            this.BspTree = new BSPTree();
             this.populateTheTree();
         }
 
@@ -64,19 +67,31 @@ namespace BSPTree
             this.gameObjects[7] = go8;
         }
 
-        public void quickSort(int left, int right, int index)
+        public SplitNode bsp(int left, int right, int index, SplitNode splitNode)
         {
             int size = (right - left) + 1;
             if (size == 2)
             {
+                EndNode rightNode;
+                EndNode leftNode;
                 if (this.gameObjects[left].getPosition(index) > this.gameObjects[right].getPosition(index))
                 {
+                    leftNode = new EndNode(splitNode, this.gameObjects[right]);
+                    rightNode = new EndNode(splitNode, this.gameObjects[left]);
                     swap(left, right);
                 }
+                else
+                {
+                    leftNode = new EndNode(splitNode, this.gameObjects[left]);
+                    rightNode = new EndNode(splitNode, this.gameObjects[right]);
+                }
+                splitNode.RightChild = rightNode;
+                splitNode.LeftChild = leftNode;
             }
             else if (size > 2)
             {
-                double pivot = medianOfThree(left, right, index);
+                splitNode.LeftChild = new SplitNode(splitNode, new SplitNode(splitNode.LeftChild, null, null), new SplitNode(splitNode.RightChild, null, null));
+                double pivot = medianOfThree(left, right, index); // root?
                 int partition = partitionIt(left, right, pivot, index);
 
                 index++;
@@ -84,9 +99,10 @@ namespace BSPTree
                 {
                     index = 0;
                 }
-                quickSort(left, partition, index);
-                quickSort(partition + 1, right, index);
+                bsp(left, partition, index, splitNode); // kleine gedeelte
+                bsp(partition + 1, right, index, splitNode); // grote gedeelte
             }
+            return splitNode;
         }
 
         public void swap(int index1, int index2)
