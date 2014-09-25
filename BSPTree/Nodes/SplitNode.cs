@@ -10,6 +10,11 @@ namespace BSPTree.Nodes
     {
         public Node LeftChild { get; set; }
         public Node RightChild { get; set; }
+
+        private int DIMENSION = 2;
+        public virtual double[] lowerArray { get; set; }
+        public virtual double[] upperArray { get; set; }
+
         public int ChildCount
         {
             get
@@ -32,6 +37,42 @@ namespace BSPTree.Nodes
         {
             this.LeftChild = leftChild;
             this.RightChild = rightChild;
+            
+            this.lowerArray = new double[DIMENSION];
+            this.upperArray = new double[DIMENSION];
+
+        }
+
+        public override double lowerBound(int index)
+        {
+            if (this.LeftChild != null && this.RightChild != null)
+            {
+                if (this.LeftChild.lowerBound(index) < this.RightChild.lowerBound(index))
+                {
+                    return this.LeftChild.lowerBound(index);
+                }
+                else
+                {
+                    return this.RightChild.lowerBound(index);
+                }
+            }
+            return 0;
+        }
+
+        public override double upperBound(int index)
+        {
+            if (this.LeftChild != null && this.RightChild != null)
+            {
+                if (this.LeftChild.upperBound(index) > this.RightChild.upperBound(index))
+                {
+                    return this.LeftChild.upperBound(index);
+                }
+                else
+                {
+                    return this.RightChild.upperBound(index);
+                }
+            }
+            return 0;
         }
 
         //public override string ToString()

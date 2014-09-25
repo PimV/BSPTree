@@ -23,7 +23,7 @@ namespace BSPTree
 
             this.populateTheTree();
             this.BspTree.Root = bsp(0, 7, 0);
-
+            //updateXY(this.BspTree.Root);
 
         }
 
@@ -184,8 +184,21 @@ namespace BSPTree
             return leftMark;
         }
 
+        private void updateXY(Node node)
+        {
+            //node.lowerArray[0] = node.lowerBound(0);
+            //node.lowerArray[1] = node.lowerBound(1);
+            //node.upperArray[0] = node.upperBound(0);
+            //node.upperArray[1] = node.upperBound(1);
+            //if (node.LeftChild != null)
+            //{
+            //    updateXY(node.LeftChild);
+            //}
 
-
-
+            //if (node.RightChild != null)
+            //{
+            //    updateXY(node.RightChild);
+            //}
+        }
     }
 }

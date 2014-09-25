@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BSPTree.Nodes
 {
-    public class Node
+    public abstract class Node
     {
         public Node Parent { get; set; }
 
@@ -15,6 +15,8 @@ namespace BSPTree.Nodes
             this.Parent = parent;
         }
 
+        public abstract double lowerBound(int index);
+        public abstract double upperBound(int index);
 
     }
 }

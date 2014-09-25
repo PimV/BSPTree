@@ -21,6 +21,15 @@ namespace BSPTree.Nodes
             return GameObject.getX() + ":" + GameObject.getY();
         }
 
+        public override double lowerBound(int index)
+        {
+            return GameObject.getPosition(index);
+        }
+
+        public override double upperBound(int index)
+        {
+            return GameObject.getPosition(index);
+        }
 
     }
 }
