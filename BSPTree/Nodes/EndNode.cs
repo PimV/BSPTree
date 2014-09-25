@@ -16,6 +16,11 @@ namespace BSPTree.Nodes
             this.GameObject = gameObject;
         }
 
+        public override string ToString()
+        {
+            return GameObject.getX() + ":" + GameObject.getY();
+        }
+
 
     }
 }

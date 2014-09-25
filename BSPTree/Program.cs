@@ -14,12 +14,14 @@ namespace BSPTree
         {
             QuickSort tree = new QuickSort();
 
-            tree.printTree();
+           // tree.printTree();
 
-            tree.bsp(0, 7, 0, tree.BspTree.Root);
+            //tree.bsp(0, 7, 0, tree.BspTree.Root);
 
-            tree.printTree();
+            //tree.printTree();
 
+
+           // tree.BspTree.printBspTree();
 
 
             Console.Read();

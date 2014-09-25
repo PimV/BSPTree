@@ -9,12 +9,28 @@ namespace BSPTree
 {
     public class BSPTree
     {
-        public SplitNode Root { get; set; }
+        public Node Root { get; set; }
 
         public BSPTree()
         {
-            this.Root = new SplitNode(null, null, null);
+            //this.Root = new SplitNode(null, null, null);
+        }
 
+        public void printBspTree()
+        {
+        }
+
+        public void inOrder(Node node)
+        {
+            //if (node != null)
+            //{
+            //    if (node.GetType() == typeof(SplitNode))
+            //    {
+            //        inOrder(node.LeftChild);
+            //        Console.WriteLine(node);
+            //        inOrder(node.RightChild);
+            //    }
+            //}
         }
 
     }
