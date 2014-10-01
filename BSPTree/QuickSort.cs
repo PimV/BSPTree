@@ -13,7 +13,7 @@ namespace BSPTree
         private int amountOfGameObjects = 8;
         public int Length { get { return gameObjects.Length; } }
         public GameObject[] GameObjects { get { return gameObjects; } set { gameObjects = value; } }
-        public List<GameObject> GameObjectList { get; set; }
+        public List<GameObject> GameObjectList { get; set;  }
         public BSPTree BspTree { get; set; }
 
         public QuickSort()
@@ -23,7 +23,7 @@ namespace BSPTree
 
             this.populateTheTree();
             this.BspTree.Root = bsp(0, 7, 0);
-            //updateXY(this.BspTree.Root);
+            updateXY(this.BspTree.Root);
 
         }
 
@@ -186,19 +186,25 @@ namespace BSPTree
 
         private void updateXY(Node node)
         {
-            //node.lowerArray[0] = node.lowerBound(0);
-            //node.lowerArray[1] = node.lowerBound(1);
-            //node.upperArray[0] = node.upperBound(0);
-            //node.upperArray[1] = node.upperBound(1);
-            //if (node.LeftChild != null)
-            //{
-            //    updateXY(node.LeftChild);
-            //}
+            if (node is SplitNode)
+            {
+                SplitNode sn = ((SplitNode)node);
 
-            //if (node.RightChild != null)
-            //{
-            //    updateXY(node.RightChild);
-            //}
+                sn.lowerArray[0] = sn.lowerBound(0);
+                sn.lowerArray[1] = sn.lowerBound(1);
+                sn.upperArray[0] = sn.upperBound(0);
+                sn.upperArray[1] = sn.upperBound(1);
+
+                if (sn.LeftChild != null)
+                {
+                    updateXY(sn.LeftChild);
+                }
+
+                if (sn.RightChild != null)
+                {
+                    updateXY(sn.RightChild);
+                }
+            }
         }
     }
 }
