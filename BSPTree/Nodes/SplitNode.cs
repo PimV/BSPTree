@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSPTree.Nodes
+namespace BSPTreeGUI.Nodes
 {
     public class SplitNode : Node
     {
@@ -37,7 +37,7 @@ namespace BSPTree.Nodes
         {
             this.LeftChild = leftChild;
             this.RightChild = rightChild;
-            
+
             this.lowerArray = new double[DIMENSION];
             this.upperArray = new double[DIMENSION];
 
@@ -89,7 +89,6 @@ namespace BSPTree.Nodes
         //    returnString += "] as children.";
         //    return returnString;
         //}
-
 
     }
 }

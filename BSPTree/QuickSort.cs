@@ -1,11 +1,11 @@
-﻿using BSPTree.Nodes;
+﻿using BSPTreeGUI.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSPTree
+namespace BSPTreeGUI
 {
     public class QuickSort
     {
@@ -13,7 +13,7 @@ namespace BSPTree
         private int amountOfGameObjects = 8;
         public int Length { get { return gameObjects.Length; } }
         public GameObject[] GameObjects { get { return gameObjects; } set { gameObjects = value; } }
-        public List<GameObject> GameObjectList { get; set;  }
+        public List<GameObject> GameObjectList { get; set; }
         public BSPTree BspTree { get; set; }
 
         public QuickSort()
@@ -24,7 +24,6 @@ namespace BSPTree
             this.populateTheTree();
             this.BspTree.Root = bsp(0, 7, 0);
             updateXY(this.BspTree.Root);
-
         }
 
         public void printTree()
@@ -100,8 +99,8 @@ namespace BSPTree
                 {
                     index = 0;
                 }
-                SplitNode leftChild = (SplitNode) bsp(left, partition, index);
-                SplitNode rightChild = (SplitNode) bsp(partition + 1, right, index);
+                SplitNode leftChild = (SplitNode)bsp(left, partition, index);
+                SplitNode rightChild = (SplitNode)bsp(partition + 1, right, index);
                 leftChild.Parent = splitNode;
                 rightChild.Parent = splitNode;
                 splitNode.RightChild = rightChild;
@@ -205,6 +204,11 @@ namespace BSPTree
                     updateXY(sn.RightChild);
                 }
             }
+        }
+
+        public void search(double x, double y)
+        {
+            
         }
     }
 }

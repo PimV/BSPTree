@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSPTree
+namespace BSPTreeGUI
 {
     public class GameObject
     {
@@ -31,6 +31,5 @@ namespace BSPTree
         {
             return position[index];
         }
-
     }
 }

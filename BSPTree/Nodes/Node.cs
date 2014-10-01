@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSPTree.Nodes
+namespace BSPTreeGUI.Nodes
 {
     public abstract class Node
     {
@@ -17,6 +17,5 @@ namespace BSPTree.Nodes
 
         public abstract double lowerBound(int index);
         public abstract double upperBound(int index);
-
     }
 }

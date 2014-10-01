@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSPTree.Nodes
+namespace BSPTreeGUI.Nodes
 {
     public class EndNode : Node
     {
         public GameObject GameObject { get; set; }
-
         public EndNode(Node parent, GameObject gameObject)
             : base(parent)
         {
@@ -30,6 +29,5 @@ namespace BSPTree.Nodes
         {
             return GameObject.getPosition(index);
         }
-
     }
 }
