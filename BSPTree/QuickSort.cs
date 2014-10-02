@@ -22,7 +22,7 @@ namespace BSPTreeGUI
             this.BspTree = new BSPTree();
 
             this.populateTheTree();
-            this.BspTree.Root = bsp(0, 7, 0,null);
+            this.BspTree.Root = bsp(0, 7, 0, null);
             updateXY(this.BspTree.Root);
         }
 
@@ -73,12 +73,12 @@ namespace BSPTreeGUI
         public Node bsp(int left, int right, int index, Node parent)
         {
             Node node;
-          
+
             int size = (right - left) + 1;
             if (size == 2)
             {
                 node = new SplitNode(parent, null, null);
-                
+
                 EndNode rightNode = new EndNode(node, this.gameObjects[right]);
                 EndNode leftNode = new EndNode(node, this.gameObjects[left]);
                 if (this.gameObjects[left].getPosition(index) > this.gameObjects[right].getPosition(index))
@@ -103,18 +103,18 @@ namespace BSPTreeGUI
                 {
                     index = 0;
                 }
-                Node leftChild = bsp(left, partition, index,node);
-                Node rightChild = bsp(partition + 1, right, index,node);
-//                leftChild.Parent = node;
-//                rightChild.Parent = node;
+                Node leftChild = bsp(left, partition, index, node);
+                Node rightChild = bsp(partition + 1, right, index, node);
+                //                leftChild.Parent = node;
+                //                rightChild.Parent = node;
                 ((SplitNode)node).RightChild = rightChild;
                 ((SplitNode)node).LeftChild = leftChild;
             }
             else // (if size == 1)
             {
                 node = new EndNode(parent, this.gameObjects[left]);
-               // EndNode leftEndNode = new EndNode(splitNode, this.gameObjects[left]);
-               // splitNode.LeftChild = leftEndNode;
+                // EndNode leftEndNode = new EndNode(splitNode, this.gameObjects[left]);
+                // splitNode.LeftChild = leftEndNode;
             }
 
 
@@ -196,8 +196,11 @@ namespace BSPTreeGUI
 
                 sn.lowerArray[0] = sn.lowerBound(0);
                 sn.lowerArray[1] = sn.lowerBound(1);
+
                 sn.upperArray[0] = sn.upperBound(0);
                 sn.upperArray[1] = sn.upperBound(1);
+
+                Console.WriteLine(sn.lowerArray[1] + "--" + sn.upperArray[1]);
 
                 if (sn.LeftChild != null)
                 {
@@ -211,8 +214,35 @@ namespace BSPTreeGUI
             }
         }
 
-        public void search(double x, double y)
+        public void search(double x, double y, Node currentNode)
         {
+            if (currentNode is EndNode)
+            {
+                if (((EndNode)currentNode).GameObject.getX() == x &&
+                    ((EndNode)currentNode).GameObject.getY() == y)
+                {
+                    Console.WriteLine(((EndNode)currentNode).GameObject.getX() + ":" + ((EndNode)currentNode).GameObject.getY());
+                }
+                //Console.WriteLine(((EndNode)currentNode).GameObject.getX() + ":" + ((EndNode)currentNode).GameObject.getY());
+                return;
+            }
+
+            if (currentNode is SplitNode)
+            {
+                //   Console.WriteLine(((SplitNode)currentNode).lowerArray[0] + ":" + ((SplitNode)currentNode).upperArray[0] + ":" + ((SplitNode)currentNode).lowerArray[1] + ":" + ((SplitNode)currentNode).upperArray[1]);
+                if (x > ((SplitNode)currentNode).lowerArray[0] &&
+                    x < ((SplitNode)currentNode).upperArray[0] &&
+                    y > ((SplitNode)currentNode).lowerArray[1] &&
+                    y < ((SplitNode)currentNode).upperArray[1])
+                {
+                    Console.WriteLine("Left!");
+                    search(x, y, ((SplitNode)currentNode).LeftChild);
+                }
+                else
+                {
+                    search(x, y, ((SplitNode)currentNode).RightChild);
+                }
+            }
         }
     }
 }

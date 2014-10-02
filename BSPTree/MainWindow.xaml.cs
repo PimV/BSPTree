@@ -41,7 +41,7 @@ namespace BSPTreeGUI
 
             Console.WriteLine("Click event:");
             Console.WriteLine("X: " + point.X + " Y: " + point.Y);
-            tree.search(point.X, point.Y);
+            tree.search(point.X, point.Y, tree.BspTree.Root);
         }
     }
 }

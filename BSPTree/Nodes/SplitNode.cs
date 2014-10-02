@@ -45,34 +45,26 @@ namespace BSPTreeGUI.Nodes
 
         public override double lowerBound(int index)
         {
-            if (this.LeftChild != null && this.RightChild != null)
+            if (this.LeftChild.lowerBound(index) < this.RightChild.lowerBound(index))
             {
-                if (this.LeftChild.lowerBound(index) < this.RightChild.lowerBound(index))
-                {
-                    return this.LeftChild.lowerBound(index);
-                }
-                else
-                {
-                    return this.RightChild.lowerBound(index);
-                }
+                return this.LeftChild.lowerBound(index);
             }
-            return 0;
+            else
+            {
+                return this.RightChild.lowerBound(index);
+            }
         }
 
         public override double upperBound(int index)
         {
-            if (this.LeftChild != null && this.RightChild != null)
+            if (this.LeftChild.upperBound(index) > this.RightChild.upperBound(index))
             {
-                if (this.LeftChild.upperBound(index) > this.RightChild.upperBound(index))
-                {
-                    return this.LeftChild.upperBound(index);
-                }
-                else
-                {
-                    return this.RightChild.upperBound(index);
-                }
+                return this.LeftChild.upperBound(index);
             }
-            return 0;
+            else
+            {
+                return this.RightChild.upperBound(index);
+            }
         }
 
         //public override string ToString()
