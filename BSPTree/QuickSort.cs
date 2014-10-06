@@ -24,6 +24,9 @@ namespace BSPTreeGUI
             this.populateTheTree();
             this.BspTree.Root = bsp(0, 7, 0, null);
             updateXY(this.BspTree.Root);
+            search2(101, 100, this.BspTree.Root, null, false);
+            // search2(900, 100, this.BspTree.Root, null);
+            //search(950, 50, this.BspTree.Root);
         }
 
         public void printTree()
@@ -200,8 +203,6 @@ namespace BSPTreeGUI
                 sn.upperArray[0] = sn.upperBound(0);
                 sn.upperArray[1] = sn.upperBound(1);
 
-                Console.WriteLine(sn.lowerArray[1] + "--" + sn.upperArray[1]);
-
                 if (sn.LeftChild != null)
                 {
                     updateXY(sn.LeftChild);
@@ -214,33 +215,104 @@ namespace BSPTreeGUI
             }
         }
 
-        public void search(double x, double y, Node currentNode)
+        public void search2(double x, double y, Node currentNode, SplitNode lastLeftNode, Boolean walkBack)
         {
+            if (lastLeftNode == null && walkBack == true)
+            {
+                return;
+            }
             if (currentNode is EndNode)
             {
-                if (((EndNode)currentNode).GameObject.getX() == x &&
-                    ((EndNode)currentNode).GameObject.getY() == y)
+               
+                EndNode currentEndNode = (EndNode)currentNode;
+                if (currentEndNode.GameObject.getX() == x && currentEndNode.GameObject.getY() == y)
                 {
-                    Console.WriteLine(((EndNode)currentNode).GameObject.getX() + ":" + ((EndNode)currentNode).GameObject.getY());
+                    Console.WriteLine("Game Object found");
                 }
-                //Console.WriteLine(((EndNode)currentNode).GameObject.getX() + ":" + ((EndNode)currentNode).GameObject.getY());
-                return;
+                else
+                {
+                   
+                    search2(x, y, lastLeftNode, null, true);
+                }
             }
 
             if (currentNode is SplitNode)
             {
-                //   Console.WriteLine(((SplitNode)currentNode).lowerArray[0] + ":" + ((SplitNode)currentNode).upperArray[0] + ":" + ((SplitNode)currentNode).lowerArray[1] + ":" + ((SplitNode)currentNode).upperArray[1]);
-                if (x > ((SplitNode)currentNode).lowerArray[0] &&
-                    x < ((SplitNode)currentNode).upperArray[0] &&
-                    y > ((SplitNode)currentNode).lowerArray[1] &&
-                    y < ((SplitNode)currentNode).upperArray[1])
+                SplitNode currentSplitNode = (SplitNode)currentNode;
+                if (currentSplitNode.LeftChild is SplitNode)
                 {
-                    Console.WriteLine("Left!");
-                    search(x, y, ((SplitNode)currentNode).LeftChild);
+                    SplitNode currentLeftSplitNode = (SplitNode)currentSplitNode.LeftChild;
+                    if (x >= currentLeftSplitNode.lowerArray[0] &&
+                   x <= currentLeftSplitNode.upperArray[0] &&
+                   y >= currentLeftSplitNode.lowerArray[1] &&
+                   y <= currentLeftSplitNode.upperArray[1])
+                    {
+                        search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
+                    }
+                    else
+                    {
+                        search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
+                    }
                 }
                 else
                 {
-                    search(x, y, ((SplitNode)currentNode).RightChild);
+                    search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
+                }
+
+
+
+                //if (x >= currentSplitNode.LeftChild.lowerBound(0) &&
+                //    x <= currentSplitNode.LeftChild.upperBound(0) &&
+                //    y >= currentSplitNode.LeftChild.lowerBound(1) &&
+                //    y <= currentSplitNode.LeftChild.upperBound(1))
+                //{
+                //    search2(x, y, currentSplitNode.LeftChild, currentSplitNode);
+                //}
+                //else
+                //{
+                //    search2(x, y, currentSplitNode.RightChild, lastLeftNode);
+                //}
+            }
+        }
+
+        public void search(double x, double y, Node currentNode, SplitNode lastLeftNode)
+        {
+
+            //Console.WriteLine(currentNode);
+            if (currentNode is EndNode)
+            {
+                // Console.WriteLine(x + ":" + y + ":" + ((EndNode)currentNode).GameObject.getX() + ":" + ((EndNode)currentNode).GameObject.getY());
+                // Console.WriteLine(((EndNode)currentNode).GameObject.getX() + ":" + ((EndNode)currentNode).GameObject.getY());
+                if (((EndNode)currentNode).GameObject.getX() == x &&
+                    ((EndNode)currentNode).GameObject.getY() == y)
+                {
+                    Console.WriteLine("Object is FOUND! (" + x + "," + y + ")");
+                    //Console.WriteLine(((EndNode)currentNode).GameObject.getX() + ":" + ((EndNode)currentNode).GameObject.getY());
+                }
+                else
+                {
+
+                    //search(x, y, lastLeftNode.RightChild, null);
+                    //Console.WriteLine("Object is NOT FOUND! (" + x + "," + y + ")");
+                }
+            }
+
+            if (currentNode is SplitNode)
+            {
+                //  Console.WriteLine(((SplitNode)currentNode).lowerArray[0] + ":" + ((SplitNode)currentNode).upperArray[0] + ":" + ((SplitNode)currentNode).lowerArray[1] + ":" + ((SplitNode)currentNode).upperArray[1]);
+                if (x >= ((SplitNode)currentNode).lowerArray[0] &&
+                    x <= ((SplitNode)currentNode).upperArray[0] &&
+                    y >= ((SplitNode)currentNode).lowerArray[1] &&
+                    y <= ((SplitNode)currentNode).upperArray[1])
+                {
+                    Console.WriteLine(lastLeftNode);
+                    //  Console.WriteLine("Left!");
+                    search(x, y, ((SplitNode)currentNode).LeftChild, ((SplitNode)currentNode));
+                }
+                else
+                {
+                    // Console.WriteLine("Right!");
+                    search(x, y, ((SplitNode)currentNode).RightChild, lastLeftNode);
                 }
             }
         }

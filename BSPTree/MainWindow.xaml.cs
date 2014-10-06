@@ -28,7 +28,8 @@ namespace BSPTreeGUI
 
             this.MouseLeftButtonDown += Canvas_MouseLeftButtonDown;
 
-           tree = new QuickSort();
+            tree = new QuickSort();
+          //  tree.search(100, 100, tree.BspTree.Root);
             foreach (GameObject go in tree.GameObjects)
             {
                 Console.WriteLine("X: " + go.getX() + " - Y: " + go.getY());
@@ -39,9 +40,9 @@ namespace BSPTreeGUI
         {
             Point point = e.GetPosition(this);
 
-            Console.WriteLine("Click event:");
-            Console.WriteLine("X: " + point.X + " Y: " + point.Y);
-            tree.search(point.X, point.Y, tree.BspTree.Root);
+            Console.WriteLine("Clicked on X: " + point.X + " Y: " + point.Y);
+            //tree.search(point.X, point.Y, tree.BspTree.Root, null);
+            tree.search2(point.X, point.Y, tree.BspTree.Root, null, false);
         }
     }
 }

@@ -69,16 +69,15 @@ namespace BSPTreeGUI.Nodes
 
         //public override string ToString()
         //{
-        //    String returnString = "SplitNode with [";
-        //    if (LeftChild != null)
+        //    String returnString = "";
+        //    if (LeftChild != null && LeftChild is EndNode)
         //    {
-        //        returnString += " left child: " + LeftChild + " |";
+        //        returnString += "left" + LeftChild + " |";
         //    }
-        //    if (RightChild != null)
+        //    if (RightChild != null && RightChild is EndNode)
         //    {
         //        returnString += "| right child: " + RightChild;
         //    }
-        //    returnString += "] as children.";
         //    return returnString;
         //}
 
