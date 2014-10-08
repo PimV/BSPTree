@@ -28,17 +28,21 @@ namespace BSPTreeGUI.Helper
         public GameObject[] five { get; set; }
         public GameObject[] fifty { get; set; }
         public GameObject[] fivehundred { get; set; }
-        public BSPTree tree { get; set; }
 
-        public Benchmark() 
+        public QuickSort existingTree5 { get; set; }
+        public QuickSort existingTree50 { get; set; }
+        public QuickSort existingTree500 { get; set; }
+        public MyStopwatch stopWatch { get; set; }
+
+        public Benchmark()
         {
+            stopWatch = new MyStopwatch();
+
             five = new GameObject[5];
             fifty = new GameObject[50];
             fivehundred = new GameObject[500];
 
             Random r = new Random();
-
-            // add gameobjects to array
             for (int i = 0; i < five.Length; i++)
             {
                 five[i] = new GameObject(r.Next(1000), r.Next(1000));
@@ -54,29 +58,63 @@ namespace BSPTreeGUI.Helper
                 fivehundred[i] = new GameObject(r.Next(1000), r.Next(1000));
             }
 
-            // tree
+            existingTree5 = new QuickSort(five);
+            existingTree50 = new QuickSort(fifty);
+            existingTree500 = new QuickSort(fivehundred);
         }
 
-        public void benchMark1()
+        public void benchMark1a()
         {
+            stopWatch.Reset();
+            stopWatch.Start();
+
+            for (int i = 0; i < five.Length; i++)
+            {
+                existingTree5.search2(five[i].getX(), five[i].getY(), existingTree5.BspTree.Root);
+            }
+
+            stopWatch.Stop();
 
         }
 
-        public void benchMark2()
+        public void benchMark1b()
         {
+            stopWatch.Reset();
+            stopWatch.Start();
 
+            for (int i = 0; i < fifty.Length; i++)
+            {
+                existingTree50.search2(fifty[i].getX(), fifty[i].getY(), existingTree50.BspTree.Root);
+            }
+
+            stopWatch.Stop();
         }
 
-        public void benchMark3()
+        public void benchMark1c()
         {
+            stopWatch.Reset();
+            stopWatch.Start();
 
+            for (int i = 0; i < fivehundred.Length; i++)
+            {
+                existingTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), existingTree500.BspTree.Root);
+            }
+
+            stopWatch.Stop();
         }
 
-        public void benchMark4()
-        {
+        public void benchMark2a() { }
+        public void benchMark2b() { }
+        public void benchMark2c() { }
 
-        }
 
+        public void benchMark3a() { }
+        public void benchMark3b() { }
+        public void benchMark3c() { }
+
+        public void benchMark4a() { }
+        public void benchMark4b() { }
+        public void benchMark4c() { }
     }
 
 

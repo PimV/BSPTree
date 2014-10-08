@@ -30,10 +30,28 @@ namespace BSPTreeGUI
             this.MouseLeftButtonDown += Canvas_MouseLeftButtonDown;
 
             Benchmark bm = new Benchmark();
-            bm.benchMark1();
-            bm.benchMark2();
-            bm.benchMark3();
-            bm.benchMark4();
+
+            Console.WriteLine("Benchmark 1: ");
+            bm.benchMark1a();
+            Console.WriteLine("1a: 5 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
+
+            bm.benchMark1b();
+            Console.WriteLine("1b: 50 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
+
+            bm.benchMark1c();
+            Console.WriteLine("1c: 500 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
+
+            bm.benchMark2a();
+            bm.benchMark2b();
+            bm.benchMark2c();
+
+            bm.benchMark3a();
+            bm.benchMark3b();
+            bm.benchMark3c();
+
+            bm.benchMark4a();
+            bm.benchMark4b();
+            bm.benchMark4c();
 
             tree = new QuickSort();
             //tree.search(100, 100, tree.BspTree.Root);

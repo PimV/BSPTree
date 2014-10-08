@@ -11,6 +11,7 @@ namespace BSPTreeGUI
     {
         private GameObject[] gameObjects;
         private int amountOfGameObjects = 8;
+        private GameObject[] five;
         public int Length { get { return gameObjects.Length; } }
         public GameObject[] GameObjects { get { return gameObjects; } set { gameObjects = value; } }
         public List<GameObject> GameObjectList { get; set; }
@@ -33,6 +34,14 @@ namespace BSPTreeGUI
             //search2(40, 800, this.BspTree.Root);//, null, false);
             //search2(700, 850, this.BspTree.Root);//, null, false);
 
+        }
+
+        public QuickSort(GameObject[] gameobjects)
+        {
+            this.gameObjects = gameobjects;
+            this.BspTree = new BSPTree();
+            this.BspTree.Root = bsp(0, gameobjects.Length - 1, 0, null);
+            updateXY(this.BspTree.Root);
         }
 
         public void printTree()
@@ -244,7 +253,7 @@ namespace BSPTreeGUI
             {
                 if (currentNode.lowerBound(0) == x && currentNode.lowerBound(1) == y)
                 {
-                    Console.WriteLine("Add to list");
+                    //Console.WriteLine("Add to list");
                 }
             }
 
