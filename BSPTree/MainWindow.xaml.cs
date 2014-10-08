@@ -51,9 +51,15 @@ namespace BSPTreeGUI
             bm.benchMark2c();
             Console.WriteLine("2c: 500 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
 
+            Console.WriteLine("Benchmark 3: ");
             bm.benchMark3a();
+            Console.WriteLine("3a: 5 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
+
             bm.benchMark3b();
+            Console.WriteLine("3b: 50 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
+
             bm.benchMark3c();
+            Console.WriteLine("3c: 500 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
 
             bm.benchMark4a();
             bm.benchMark4b();
