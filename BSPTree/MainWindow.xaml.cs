@@ -41,9 +41,15 @@ namespace BSPTreeGUI
             bm.benchMark1c();
             Console.WriteLine("1c: 500 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
 
+            Console.WriteLine("Benchmark 2: ");
             bm.benchMark2a();
+            Console.WriteLine("2a: 5 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
+            
             bm.benchMark2b();
+            Console.WriteLine("2b: 50 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
+            
             bm.benchMark2c();
+            Console.WriteLine("2c: 500 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
 
             bm.benchMark3a();
             bm.benchMark3b();
@@ -52,6 +58,7 @@ namespace BSPTreeGUI
             bm.benchMark4a();
             bm.benchMark4b();
             bm.benchMark4c();
+            bm.benchMark4d();
 
             tree = new QuickSort();
             //tree.search(100, 100, tree.BspTree.Root);

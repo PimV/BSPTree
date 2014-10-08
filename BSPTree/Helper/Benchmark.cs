@@ -103,9 +103,45 @@ namespace BSPTreeGUI.Helper
             stopWatch.Stop();
         }
 
-        public void benchMark2a() { }
-        public void benchMark2b() { }
-        public void benchMark2c() { }
+        public void benchMark2a()
+        {
+            stopWatch.Reset();
+            stopWatch.Start();
+
+            QuickSort newTree5 = new QuickSort(five);
+            for (int i = 0; i < five.Length; i++)
+            {
+                newTree5.search2(five[i].getX(), five[i].getY(), newTree5.BspTree.Root);
+            }
+
+            stopWatch.Stop();
+        }
+        public void benchMark2b() 
+        {
+            stopWatch.Reset();
+            stopWatch.Start();
+
+            QuickSort newTree50 = new QuickSort(fifty);
+            for (int i = 0; i < fifty.Length; i++)
+            {
+                newTree50.search2(fifty[i].getX(), fifty[i].getY(), newTree50.BspTree.Root);
+            }
+
+            stopWatch.Stop();
+        }
+        public void benchMark2c() 
+        {
+            stopWatch.Reset();
+            stopWatch.Start();
+
+            QuickSort newTree500 = new QuickSort(fivehundred);
+            for (int i = 0; i < fivehundred.Length; i++)
+            {
+                newTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), newTree500.BspTree.Root);
+            }
+
+            stopWatch.Stop();
+        }
 
 
         public void benchMark3a() { }
@@ -115,6 +151,8 @@ namespace BSPTreeGUI.Helper
         public void benchMark4a() { }
         public void benchMark4b() { }
         public void benchMark4c() { }
+        public void benchMark4d() { }
+
     }
 
 
