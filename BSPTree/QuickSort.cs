@@ -24,14 +24,14 @@ namespace BSPTreeGUI
             this.populateTheTree();
             this.BspTree.Root = bsp(0, 7, 0, null);
             updateXY(this.BspTree.Root);
-            search2(900, 100, this.BspTree.Root, null, false);
-            search2(100, 100, this.BspTree.Root, null, false);
-            search2(950, 50, this.BspTree.Root, null, false);
-            search2(50, 750, this.BspTree.Root, null, false);
-            search2(110, 90, this.BspTree.Root, null, false);
-            search2(60, 800, this.BspTree.Root, null, false);
-            search2(40, 800, this.BspTree.Root, null, false);
-            search2(700, 850, this.BspTree.Root, null, false);
+            search2(100, 100, this.BspTree.Root);//, null, false);
+            //search2(100, 100, this.BspTree.Root);//, null, false);
+            //search2(950, 50, this.BspTree.Root);//, null, false);
+            //search2(50, 750, this.BspTree.Root);//, null, false);
+            //search2(110, 90, this.BspTree.Root);//, null, false);
+            //search2(60, 800, this.BspTree.Root);//, null, false);
+            //search2(40, 800, this.BspTree.Root);//, null, false);
+            //search2(700, 850, this.BspTree.Root);//, null, false);
 
         }
 
@@ -60,7 +60,7 @@ namespace BSPTreeGUI
 
         private void populateTheTree()
         {
-            GameObject go1 = new GameObject(900, 100);
+            GameObject go1 = new GameObject(100, 100);
             GameObject go2 = new GameObject(100, 100);
             GameObject go3 = new GameObject(950, 50);
             GameObject go4 = new GameObject(50, 750);
@@ -221,114 +221,137 @@ namespace BSPTreeGUI
             }
         }
 
-        public void search2(double x, double y, Node currentNode, SplitNode lastLeftNode, Boolean walkBack)
+        public void search2(double x, double y, Node currentNode)
         {
-            if (lastLeftNode == null && walkBack == true)
-            {
-                return;
-            }
-            if (currentNode is EndNode)
-            {
-                EndNode currentEndNode = (EndNode)currentNode;
-
-                if (currentEndNode.GameObject.getX() == x && currentEndNode.GameObject.getY() == y)
-                {
-                    Console.WriteLine("Game Object found");
-
-
-                }
-                else
-                {
-
-                    search2(x, y, lastLeftNode, null, true);
-
-                }
-            }
-
             if (currentNode is SplitNode)
             {
-                SplitNode currentSplitNode = (SplitNode)currentNode;
-                if (walkBack == true)
+                if ((x >= ((SplitNode)currentNode).LeftChild.lowerBound(0) &&
+                     x <= ((SplitNode)currentNode).LeftChild.upperBound(0)) &&
+                     (y >= ((SplitNode)currentNode).LeftChild.lowerBound(1) &&
+                        y <= ((SplitNode)currentNode).LeftChild.upperBound(1)))
                 {
-                    if (currentSplitNode.RightChild is SplitNode)
-                    {
-                        SplitNode currentRightSplitNode = (SplitNode)currentSplitNode.RightChild;
-                        if (x >= currentRightSplitNode.lowerArray[0] &&
-                       x <= currentRightSplitNode.upperArray[0] &&
-                       y >= currentRightSplitNode.lowerArray[1] &&
-                       y <= currentRightSplitNode.upperArray[1])
-                        {
-                            search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
-                        }
-                        else
-                        {
-                            search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
-                        }
-                    }
-                    else if (currentSplitNode.RightChild is EndNode)
-                    {
-                        EndNode currentRightEndNode = (EndNode)currentSplitNode.LeftChild;
-                        if (x >= currentRightEndNode.lowerBound(0) &&
-                      x <= currentRightEndNode.upperBound(0) &&
-                      y >= currentRightEndNode.lowerBound(1) &&
-                      y <= currentRightEndNode.upperBound(1))
-                        {
-                            search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
-                        }
-                        else
-                        {
-                            search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
-                        }
-                    }
+                    search2(x, y, ((SplitNode)currentNode).LeftChild);
                 }
-                else
+                if ((x >= ((SplitNode)currentNode).RightChild.lowerBound(0) &&
+                     x <= ((SplitNode)currentNode).RightChild.upperBound(0)) &&
+                     (y >= ((SplitNode)currentNode).RightChild.lowerBound(1) &&
+                        y <= ((SplitNode)currentNode).RightChild.upperBound(1)))
                 {
-                    if (currentSplitNode.LeftChild is SplitNode)
-                    {
-                        SplitNode currentLeftSplitNode = (SplitNode)currentSplitNode.LeftChild;
-                        if (x >= currentLeftSplitNode.lowerArray[0] &&
-                       x <= currentLeftSplitNode.upperArray[0] &&
-                       y >= currentLeftSplitNode.lowerArray[1] &&
-                       y <= currentLeftSplitNode.upperArray[1])
-                        {
-                            search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
-                        }
-                        else
-                        {
-                            search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
-                        }
-                    }
-                    else if (currentSplitNode.LeftChild is EndNode)
-                    {
-                        EndNode currentLeftEndNode = (EndNode)currentSplitNode.LeftChild;
-                        if (x >= currentLeftEndNode.lowerBound(0) &&
-                      x <= currentLeftEndNode.upperBound(0) &&
-                      y >= currentLeftEndNode.lowerBound(1) &&
-                      y <= currentLeftEndNode.upperBound(1))
-                        {
-                            search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
-                        }
-                        else
-                        {
-                            search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
-                        }
-                    }
+                    search2(x, y, ((SplitNode)currentNode).RightChild);
                 }
-
-
-
-                //if (x >= currentSplitNode.LeftChild.lowerBound(0) &&
-                //    x <= currentSplitNode.LeftChild.upperBound(0) &&
-                //    y >= currentSplitNode.LeftChild.lowerBound(1) &&
-                //    y <= currentSplitNode.LeftChild.upperBound(1))
-                //{
-                //    search2(x, y, currentSplitNode.LeftChild, currentSplitNode);
-                //}
-                //else
-                //{
-                //    search2(x, y, currentSplitNode.RightChild, lastLeftNode);
-                //}
             }
+            else
+            {
+                if (currentNode.lowerBound(0) == x && currentNode.lowerBound(1) == y)
+                {
+                    Console.WriteLine("Add to list");
+                }
+            }
+
+            //if (lastLeftNode == null && walkBack == true)
+            //{
+            //    return;
+            //}
+            //if (currentNode is EndNode)
+            //{
+            //    EndNode currentEndNode = (EndNode)currentNode;
+
+            //    if (currentEndNode.GameObject.getX() == x && currentEndNode.GameObject.getY() == y)
+            //    {
+            //        Console.WriteLine("Game Object found");
+            //    }
+            //    else
+            //    {
+
+            //        search2(x, y, lastLeftNode, null, true);
+
+            //    }
+            //}
+
+            //if (currentNode is SplitNode)
+            //{
+            //    SplitNode currentSplitNode = (SplitNode)currentNode;
+            //    if (walkBack == true)
+            //    {
+            //        if (currentSplitNode.RightChild is SplitNode)
+            //        {
+            //            SplitNode currentRightSplitNode = (SplitNode)currentSplitNode.RightChild;
+            //            if (x >= currentRightSplitNode.lowerArray[0] &&
+            //           x <= currentRightSplitNode.upperArray[0] &&
+            //           y >= currentRightSplitNode.lowerArray[1] &&
+            //           y <= currentRightSplitNode.upperArray[1])
+            //            {
+            //                search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
+            //            }
+            //            else
+            //            {
+            //                search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
+            //            }
+            //        }
+            //        else if (currentSplitNode.RightChild is EndNode)
+            //        {
+            //            EndNode currentRightEndNode = (EndNode)currentSplitNode.LeftChild;
+            //            if (x >= currentRightEndNode.lowerBound(0) &&
+            //          x <= currentRightEndNode.upperBound(0) &&
+            //          y >= currentRightEndNode.lowerBound(1) &&
+            //          y <= currentRightEndNode.upperBound(1))
+            //            {
+            //                search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
+            //            }
+            //            else
+            //            {
+            //                search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        if (currentSplitNode.LeftChild is SplitNode)
+            //        {
+            //            SplitNode currentLeftSplitNode = (SplitNode)currentSplitNode.LeftChild;
+            //            if (x >= currentLeftSplitNode.lowerArray[0] &&
+            //           x <= currentLeftSplitNode.upperArray[0] &&
+            //           y >= currentLeftSplitNode.lowerArray[1] &&
+            //           y <= currentLeftSplitNode.upperArray[1])
+            //            {
+            //                search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
+            //            }
+            //            else
+            //            {
+            //                search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
+            //            }
+            //        }
+            //        else if (currentSplitNode.LeftChild is EndNode)
+            //        {
+            //            EndNode currentLeftEndNode = (EndNode)currentSplitNode.LeftChild;
+            //            if (x >= currentLeftEndNode.lowerBound(0) &&
+            //          x <= currentLeftEndNode.upperBound(0) &&
+            //          y >= currentLeftEndNode.lowerBound(1) &&
+            //          y <= currentLeftEndNode.upperBound(1))
+            //            {
+            //                search2(x, y, currentSplitNode.LeftChild, currentSplitNode, walkBack);
+            //            }
+            //            else
+            //            {
+            //                search2(x, y, currentSplitNode.RightChild, lastLeftNode, walkBack);
+            //            }
+            //        }
+            //    }
+
+
+
+            //if (x >= currentSplitNode.LeftChild.lowerBound(0) &&
+            //    x <= currentSplitNode.LeftChild.upperBound(0) &&
+            //    y >= currentSplitNode.LeftChild.lowerBound(1) &&
+            //    y <= currentSplitNode.LeftChild.upperBound(1))
+            //{
+            //    search2(x, y, currentSplitNode.LeftChild, currentSplitNode);
+            //}
+            //else
+            //{
+            //    search2(x, y, currentSplitNode.RightChild, lastLeftNode);
+            //}
+            //}
         }
 
         public void search(double x, double y, Node currentNode, SplitNode lastLeftNode)

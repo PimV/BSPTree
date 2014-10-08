@@ -42,7 +42,7 @@ namespace BSPTreeGUI
 
             Console.WriteLine("Clicked on X: " + point.X + " Y: " + point.Y);
             //tree.search(point.X, point.Y, tree.BspTree.Root, null);
-            tree.search2(point.X, point.Y, tree.BspTree.Root, null, false);
+            tree.search2(point.X, point.Y, tree.BspTree.Root);//, null, false);
         }
     }
 }
