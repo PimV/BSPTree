@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BSPTreeGUI.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,8 +29,16 @@ namespace BSPTreeGUI
 
             this.MouseLeftButtonDown += Canvas_MouseLeftButtonDown;
 
+            Benchmark bm = new Benchmark();
+            bm.benchMark1();
+            bm.benchMark2();
+            bm.benchMark3();
+            bm.benchMark4();
+
             tree = new QuickSort();
-          //  tree.search(100, 100, tree.BspTree.Root);
+            //tree.search(100, 100, tree.BspTree.Root);
+
+
             foreach (GameObject go in tree.GameObjects)
             {
                 Console.WriteLine("X: " + go.getX() + " - Y: " + go.getY());

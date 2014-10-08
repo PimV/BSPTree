@@ -56,6 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\Benchmark.cs" />
+    <Compile Include="Helper\MyStopwatch.cs" />
     <Compile Include="Nodes\EndNode.cs" />
     <Compile Include="Nodes\Node.cs" />
     <Compile Include="Nodes\SplitNode.cs" />
