@@ -68,10 +68,11 @@ namespace BSPTreeGUI.Helper
             stopWatch.Reset();
             stopWatch.Start();
 
-            for (int i = 0; i < five.Length; i++)
-            {
-                existingTree5.search2(five[i].getX(), five[i].getY(), existingTree5.BspTree.Root);
-            }
+            //for (int i = 0; i < five.Length; i++)
+            //{
+                existingTree5.search2(100, 100, existingTree5.BspTree.Root);
+                //existingTree5.search2(five[i].getX(), five[i].getY(), existingTree5.BspTree.Root);
+            //}
 
             stopWatch.Stop();
 
@@ -82,10 +83,11 @@ namespace BSPTreeGUI.Helper
             stopWatch.Reset();
             stopWatch.Start();
 
-            for (int i = 0; i < fifty.Length; i++)
-            {
-                existingTree50.search2(fifty[i].getX(), fifty[i].getY(), existingTree50.BspTree.Root);
-            }
+            //for (int i = 0; i < fifty.Length; i++)
+            //{
+                existingTree50.search2(100, 100, existingTree50.BspTree.Root);
+                //existingTree50.search2(fifty[i].getX(), fifty[i].getY(), existingTree50.BspTree.Root);
+            //}
 
             stopWatch.Stop();
         }
@@ -95,10 +97,11 @@ namespace BSPTreeGUI.Helper
             stopWatch.Reset();
             stopWatch.Start();
 
-            for (int i = 0; i < fivehundred.Length; i++)
-            {
-                existingTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), existingTree500.BspTree.Root);
-            }
+            //for (int i = 0; i < fivehundred.Length; i++)
+            //{
+                existingTree500.search2(100, 100, existingTree500.BspTree.Root);
+                //existingTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), existingTree500.BspTree.Root);
+            //}
 
             stopWatch.Stop();
         }
@@ -109,10 +112,11 @@ namespace BSPTreeGUI.Helper
             stopWatch.Start();
 
             QuickSort newTree5 = new QuickSort(five);
-            for (int i = 0; i < five.Length; i++)
-            {
-                newTree5.search2(five[i].getX(), five[i].getY(), newTree5.BspTree.Root);
-            }
+            //for (int i = 0; i < five.Length; i++)
+            //{
+                newTree5.search2(100, 100, newTree5.BspTree.Root);
+                //newTree5.search2(five[i].getX(), five[i].getY(), newTree5.BspTree.Root);
+            //}
 
             stopWatch.Stop();
         }
@@ -122,10 +126,11 @@ namespace BSPTreeGUI.Helper
             stopWatch.Start();
 
             QuickSort newTree50 = new QuickSort(fifty);
-            for (int i = 0; i < fifty.Length; i++)
-            {
-                newTree50.search2(fifty[i].getX(), fifty[i].getY(), newTree50.BspTree.Root);
-            }
+            //for (int i = 0; i < fifty.Length; i++)
+            //{
+                newTree50.search2(100, 100, newTree50.BspTree.Root);
+                //newTree50.search2(fifty[i].getX(), fifty[i].getY(), newTree50.BspTree.Root);
+            //}
 
             stopWatch.Stop();
         }
@@ -135,10 +140,11 @@ namespace BSPTreeGUI.Helper
             stopWatch.Start();
 
             QuickSort newTree500 = new QuickSort(fivehundred);
-            for (int i = 0; i < fivehundred.Length; i++)
-            {
-                newTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), newTree500.BspTree.Root);
-            }
+            //for (int i = 0; i < fivehundred.Length; i++)
+            //{
+                newTree500.search2(100, 100, newTree500.BspTree.Root);
+                //newTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), newTree500.BspTree.Root);
+            //}
 
             stopWatch.Stop();
         }
@@ -149,6 +155,13 @@ namespace BSPTreeGUI.Helper
             stopWatch.Reset();
             stopWatch.Start();
 
+            QuickSort newTree5 = new QuickSort(five);
+            for (int i = 0; i < five.Length; i++) {
+                if (newTree5.GameObjects[i].getX() == 100 && newTree5.GameObjects[i].getY() == 100)
+                {
+                    //FOund
+                }
+            }
 
 
             stopWatch.Stop();
@@ -158,6 +171,14 @@ namespace BSPTreeGUI.Helper
             stopWatch.Reset();
             stopWatch.Start();
 
+            QuickSort newTree50 = new QuickSort(fifty);
+            for (int i = 0; i < fifty.Length; i++)
+            {
+                if (newTree50.GameObjects[i].getX() == 100 && newTree50.GameObjects[i].getY() == 100)
+                {
+                    //FOund
+                }
+            }
 
 
             stopWatch.Stop();
@@ -166,7 +187,14 @@ namespace BSPTreeGUI.Helper
         {
             stopWatch.Reset();
             stopWatch.Start();
-
+            QuickSort newTree500 = new QuickSort(fivehundred);
+            for (int i = 0; i < fivehundred.Length; i++)
+            {
+                if (newTree500.GameObjects[i].getX() == 100 && newTree500.GameObjects[i].getY() == 100)
+                {
+                    //FOund
+                }
+            }
 
 
             stopWatch.Stop();
