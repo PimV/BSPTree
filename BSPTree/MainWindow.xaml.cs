@@ -1,4 +1,5 @@
 ﻿using BSPTreeGUI.Helper;
+using BSPTreeGUI.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,24 @@ namespace BSPTreeGUI
 
             this.MouseLeftButtonDown += Canvas_MouseLeftButtonDown;
 
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("--------------------------" + i + "-----------------------------");
+                runBenchmark();
+            }
+
+            tree = new QuickSort();
+            //tree.search(100, 100, tree.BspTree.Root);
+
+
+            foreach (GameObject go in tree.GameObjects)
+            {
+                Console.WriteLine("X: " + go.getX() + " - Y: " + go.getY());
+            }
+        }
+
+        public void runBenchmark()
+        {
             Benchmark bm = new Benchmark();
 
             Console.WriteLine("Benchmark 1: ");
@@ -44,10 +63,10 @@ namespace BSPTreeGUI
             Console.WriteLine("Benchmark 2: ");
             bm.benchMark2a();
             Console.WriteLine("2a: 5 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
-            
+
             bm.benchMark2b();
             Console.WriteLine("2b: 50 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
-            
+
             bm.benchMark2c();
             Console.WriteLine("2c: 500 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
 
@@ -65,15 +84,6 @@ namespace BSPTreeGUI
             bm.benchMark4b();
             bm.benchMark4c();
             bm.benchMark4d();
-
-            tree = new QuickSort();
-            //tree.search(100, 100, tree.BspTree.Root);
-
-
-            foreach (GameObject go in tree.GameObjects)
-            {
-                Console.WriteLine("X: " + go.getX() + " - Y: " + go.getY());
-            }
         }
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -82,7 +92,7 @@ namespace BSPTreeGUI
 
             Console.WriteLine("Clicked on X: " + point.X + " Y: " + point.Y);
             //tree.search(point.X, point.Y, tree.BspTree.Root, null);
-            tree.search2(point.X, point.Y, tree.BspTree.Root);//, null, false);
+            tree.search2(point.X, point.Y, tree.BspTree.Root, new List<Node>());//, null, false);
         }
     }
 }

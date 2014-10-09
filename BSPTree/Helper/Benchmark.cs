@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BSPTreeGUI.Nodes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,10 +33,25 @@ namespace BSPTreeGUI.Helper
         public QuickSort existingTree5 { get; set; }
         public QuickSort existingTree50 { get; set; }
         public QuickSort existingTree500 { get; set; }
+
+        public double target1X { get; set; }
+        public double target1Y { get; set; }
+        public double target2X { get; set; }
+        public double target2Y { get; set; }
+
         public MyStopwatch stopWatch { get; set; }
 
         public Benchmark()
         {
+            //First Index
+            target1X = 50;
+            target1Y = 50;
+
+            //Last Index
+            target2X = 1000;
+            target2Y = 1000;
+
+
             stopWatch = new MyStopwatch();
 
             five = new GameObject[5];
@@ -47,16 +63,22 @@ namespace BSPTreeGUI.Helper
             {
                 five[i] = new GameObject(r.Next(1000), r.Next(1000));
             }
+            five[five.Length - 1] = new GameObject(target1X, target1Y);
+            five[0] = new GameObject(target2X, target2Y);
 
             for (int i = 0; i < fifty.Length; i++)
             {
                 fifty[i] = new GameObject(r.Next(1000), r.Next(1000));
             }
+            fifty[fifty.Length - 1] = new GameObject(target1X, target1Y);
+            fifty[0] = new GameObject(target2X, target2Y);
 
             for (int i = 0; i < fivehundred.Length; i++)
             {
                 fivehundred[i] = new GameObject(r.Next(1000), r.Next(1000));
             }
+            fivehundred[fivehundred.Length - 1] = new GameObject(target1X, target1Y);
+            fivehundred[0] = new GameObject(target2X, target2Y);
 
             existingTree5 = new QuickSort(five);
             existingTree50 = new QuickSort(fifty);
@@ -70,8 +92,9 @@ namespace BSPTreeGUI.Helper
 
             //for (int i = 0; i < five.Length; i++)
             //{
-                existingTree5.search2(100, 100, existingTree5.BspTree.Root);
-                //existingTree5.search2(five[i].getX(), five[i].getY(), existingTree5.BspTree.Root);
+            existingTree5.search2(target1X, target1Y, existingTree5.BspTree.Root, new List<Node>());
+            existingTree5.search2(target2X, target2Y, existingTree5.BspTree.Root, new List<Node>());
+            //existingTree5.search2(five[i].getX(), five[i].getY(), existingTree5.BspTree.Root);
             //}
 
             stopWatch.Stop();
@@ -85,8 +108,9 @@ namespace BSPTreeGUI.Helper
 
             //for (int i = 0; i < fifty.Length; i++)
             //{
-                existingTree50.search2(100, 100, existingTree50.BspTree.Root);
-                //existingTree50.search2(fifty[i].getX(), fifty[i].getY(), existingTree50.BspTree.Root);
+            existingTree50.search2(target1X, target1Y, existingTree50.BspTree.Root, new List<Node>());
+            existingTree50.search2(target2X, target2Y, existingTree50.BspTree.Root, new List<Node>());
+            //existingTree50.search2(fifty[i].getX(), fifty[i].getY(), existingTree50.BspTree.Root);
             //}
 
             stopWatch.Stop();
@@ -99,8 +123,9 @@ namespace BSPTreeGUI.Helper
 
             //for (int i = 0; i < fivehundred.Length; i++)
             //{
-                existingTree500.search2(100, 100, existingTree500.BspTree.Root);
-                //existingTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), existingTree500.BspTree.Root);
+            existingTree500.search2(target1X, target1Y, existingTree500.BspTree.Root, new List<Node>());
+            existingTree500.search2(target2X, target2Y, existingTree500.BspTree.Root, new List<Node>());
+            //existingTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), existingTree500.BspTree.Root);
             //}
 
             stopWatch.Stop();
@@ -114,13 +139,14 @@ namespace BSPTreeGUI.Helper
             QuickSort newTree5 = new QuickSort(five);
             //for (int i = 0; i < five.Length; i++)
             //{
-                newTree5.search2(100, 100, newTree5.BspTree.Root);
-                //newTree5.search2(five[i].getX(), five[i].getY(), newTree5.BspTree.Root);
+            newTree5.search2(target1X, target1Y, newTree5.BspTree.Root, new List<Node>());
+            newTree5.search2(target2X, target2Y, newTree5.BspTree.Root, new List<Node>());
+            //newTree5.search2(five[i].getX(), five[i].getY(), newTree5.BspTree.Root);
             //}
 
             stopWatch.Stop();
         }
-        public void benchMark2b() 
+        public void benchMark2b()
         {
             stopWatch.Reset();
             stopWatch.Start();
@@ -128,13 +154,14 @@ namespace BSPTreeGUI.Helper
             QuickSort newTree50 = new QuickSort(fifty);
             //for (int i = 0; i < fifty.Length; i++)
             //{
-                newTree50.search2(100, 100, newTree50.BspTree.Root);
-                //newTree50.search2(fifty[i].getX(), fifty[i].getY(), newTree50.BspTree.Root);
+            newTree50.search2(target1X, target1Y, newTree50.BspTree.Root, new List<Node>());
+            newTree50.search2(target2X, target2Y, newTree50.BspTree.Root, new List<Node>());
+            //newTree50.search2(fifty[i].getX(), fifty[i].getY(), newTree50.BspTree.Root);
             //}
 
             stopWatch.Stop();
         }
-        public void benchMark2c() 
+        public void benchMark2c()
         {
             stopWatch.Reset();
             stopWatch.Start();
@@ -142,8 +169,9 @@ namespace BSPTreeGUI.Helper
             QuickSort newTree500 = new QuickSort(fivehundred);
             //for (int i = 0; i < fivehundred.Length; i++)
             //{
-                newTree500.search2(100, 100, newTree500.BspTree.Root);
-                //newTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), newTree500.BspTree.Root);
+            newTree500.search2(target1X, target1Y, newTree500.BspTree.Root, new List<Node>());
+            newTree500.search2(target2X, target2Y, newTree500.BspTree.Root, new List<Node>());
+            //newTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), newTree500.BspTree.Root);
             //}
 
             stopWatch.Stop();
@@ -156,9 +184,20 @@ namespace BSPTreeGUI.Helper
             stopWatch.Start();
 
             QuickSort newTree5 = new QuickSort(five);
-            for (int i = 0; i < five.Length; i++) {
-                if (newTree5.GameObjects[i].getX() == 100 && newTree5.GameObjects[i].getY() == 100)
+            for (int i = 0; i < five.Length; i++)
+            {
+                if (newTree5.GameObjects[i].getX() == target1X && newTree5.GameObjects[i].getY() == target1Y)
                 {
+                    break;
+                    //FOund
+                }
+            }
+
+            for (int i = 0; i < five.Length; i++)
+            {
+                if (newTree5.GameObjects[i].getX() == target2X && newTree5.GameObjects[i].getY() == target2Y)
+                {
+                    break;
                     //FOund
                 }
             }
@@ -174,8 +213,18 @@ namespace BSPTreeGUI.Helper
             QuickSort newTree50 = new QuickSort(fifty);
             for (int i = 0; i < fifty.Length; i++)
             {
-                if (newTree50.GameObjects[i].getX() == 100 && newTree50.GameObjects[i].getY() == 100)
+                if (newTree50.GameObjects[i].getX() == target1X && newTree50.GameObjects[i].getY() == target1Y)
                 {
+                    break;
+                    //FOund
+                }
+            }
+
+            for (int i = 0; i < fifty.Length; i++)
+            {
+                if (newTree50.GameObjects[i].getX() == target2X && newTree50.GameObjects[i].getY() == target2Y)
+                {
+                    break;
                     //FOund
                 }
             }
@@ -190,8 +239,18 @@ namespace BSPTreeGUI.Helper
             QuickSort newTree500 = new QuickSort(fivehundred);
             for (int i = 0; i < fivehundred.Length; i++)
             {
-                if (newTree500.GameObjects[i].getX() == 100 && newTree500.GameObjects[i].getY() == 100)
+                if (newTree500.GameObjects[i].getX() == target1X && newTree500.GameObjects[i].getY() == target1Y)
                 {
+                    break;
+                    //FOund
+                }
+            }
+
+            for (int i = 0; i < fivehundred.Length; i++)
+            {
+                if (newTree500.GameObjects[i].getX() == target2X && newTree500.GameObjects[i].getY() == target2Y)
+                {
+                    break;
                     //FOund
                 }
             }

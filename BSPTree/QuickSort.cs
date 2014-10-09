@@ -25,7 +25,7 @@ namespace BSPTreeGUI
             this.populateTheTree();
             this.BspTree.Root = bsp(0, 7, 0, null);
             updateXY(this.BspTree.Root);
-            search2(100, 100, this.BspTree.Root);//, null, false);
+            search2(100, 100, this.BspTree.Root, new List<Node>());//, null, false);
             //search2(100, 100, this.BspTree.Root);//, null, false);
             //search2(950, 50, this.BspTree.Root);//, null, false);
             //search2(50, 750, this.BspTree.Root);//, null, false);
@@ -230,7 +230,7 @@ namespace BSPTreeGUI
             }
         }
 
-        public void search2(double x, double y, Node currentNode)
+        public List<Node> search2(double x, double y, Node currentNode, List<Node> foundNodes)
         {
             if (currentNode is SplitNode)
             {
@@ -239,24 +239,26 @@ namespace BSPTreeGUI
                      (y >= ((SplitNode)currentNode).LeftChild.lowerBound(1) &&
                         y <= ((SplitNode)currentNode).LeftChild.upperBound(1)))
                 {
-                    search2(x, y, ((SplitNode)currentNode).LeftChild);
+                    search2(x, y, ((SplitNode)currentNode).LeftChild, foundNodes);
                 }
                 if ((x >= ((SplitNode)currentNode).RightChild.lowerBound(0) &&
                      x <= ((SplitNode)currentNode).RightChild.upperBound(0)) &&
                      (y >= ((SplitNode)currentNode).RightChild.lowerBound(1) &&
                         y <= ((SplitNode)currentNode).RightChild.upperBound(1)))
                 {
-                    search2(x, y, ((SplitNode)currentNode).RightChild);
+                    search2(x, y, ((SplitNode)currentNode).RightChild, foundNodes);
                 }
             }
             else
             {
                 if (currentNode.lowerBound(0) == x && currentNode.lowerBound(1) == y)
                 {
+                    foundNodes.Add(currentNode);
                     //Console.WriteLine("Add to list");
                 }
             }
-
+            //Console.WriteLine("Found Nodes: " + foundNodes.Count);
+            return foundNodes;
             //if (lastLeftNode == null && walkBack == true)
             //{
             //    return;
