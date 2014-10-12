@@ -45,6 +45,10 @@ namespace BSPTreeGUI.Nodes
 
         public override double lowerBound(int index)
         {
+            if (lowerArray[index] != null)
+            {
+                return lowerArray[index];
+            }
             if (this.LeftChild.lowerBound(index) < this.RightChild.lowerBound(index))
             {
                 return this.LeftChild.lowerBound(index);
@@ -57,6 +61,10 @@ namespace BSPTreeGUI.Nodes
 
         public override double upperBound(int index)
         {
+            if (upperArray[index] != null)
+            {
+                return upperArray[index];
+            }
             if (this.LeftChild.upperBound(index) > this.RightChild.upperBound(index))
             {
                 return this.LeftChild.upperBound(index);
