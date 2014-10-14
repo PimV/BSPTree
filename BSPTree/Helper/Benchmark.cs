@@ -254,11 +254,6 @@ namespace BSPTreeGUI.Helper
             stopWatch.Stop();
         }
 
-        public void benchMark4a() { }
-        public void benchMark4b() { }
-        public void benchMark4c() { }
-        public void benchMark4d() { }
-
     }
 
 
