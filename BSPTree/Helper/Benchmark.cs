@@ -38,6 +38,9 @@ namespace BSPTreeGUI.Helper
         public double target1Y { get; set; }
         public double target2X { get; set; }
         public double target2Y { get; set; }
+        public double target3X { get; set; }
+        public double target3Y { get; set; }
+
 
         public MyStopwatch stopWatch { get; set; }
 
@@ -50,6 +53,9 @@ namespace BSPTreeGUI.Helper
             //Last Index
             target2X = 1000;
             target2Y = 1000;
+
+            target3X = 250;
+            target3Y = 250;
 
 
             stopWatch = new MyStopwatch();
@@ -64,6 +70,7 @@ namespace BSPTreeGUI.Helper
                 five[i] = new GameObject(r.Next(1000), r.Next(1000));
             }
             five[five.Length - 1] = new GameObject(target1X, target1Y);
+            five[five.Length / 2] = new GameObject(target3X, target3Y);
             five[0] = new GameObject(target2X, target2Y);
 
             for (int i = 0; i < fifty.Length; i++)
@@ -71,6 +78,7 @@ namespace BSPTreeGUI.Helper
                 fifty[i] = new GameObject(r.Next(1000), r.Next(1000));
             }
             fifty[fifty.Length - 1] = new GameObject(target1X, target1Y);
+            fifty[fifty.Length / 2] = new GameObject(target3X, target3Y);
             fifty[0] = new GameObject(target2X, target2Y);
 
             for (int i = 0; i < fivehundred.Length; i++)
@@ -78,6 +86,7 @@ namespace BSPTreeGUI.Helper
                 fivehundred[i] = new GameObject(r.Next(1000), r.Next(1000));
             }
             fivehundred[fivehundred.Length - 1] = new GameObject(target1X, target1Y);
+            fivehundred[fivehundred.Length / 2] = new GameObject(target3X, target3Y);
             fivehundred[0] = new GameObject(target2X, target2Y);
 
             existingTree5 = new QuickSort(five);
@@ -90,12 +99,10 @@ namespace BSPTreeGUI.Helper
             stopWatch.Reset();
             stopWatch.Start();
 
-            //for (int i = 0; i < five.Length; i++)
-            //{
             existingTree5.search2(target1X, target1Y, existingTree5.BspTree.Root, new List<Node>());
             existingTree5.search2(target2X, target2Y, existingTree5.BspTree.Root, new List<Node>());
-            //existingTree5.search2(five[i].getX(), five[i].getY(), existingTree5.BspTree.Root);
-            //}
+            existingTree5.search2(target3X, target3Y, existingTree5.BspTree.Root, new List<Node>());
+
 
             stopWatch.Stop();
 
@@ -110,6 +117,7 @@ namespace BSPTreeGUI.Helper
             //{
             existingTree50.search2(target1X, target1Y, existingTree50.BspTree.Root, new List<Node>());
             existingTree50.search2(target2X, target2Y, existingTree50.BspTree.Root, new List<Node>());
+            existingTree50.search2(target3X, target3Y, existingTree50.BspTree.Root, new List<Node>());
             //existingTree50.search2(fifty[i].getX(), fifty[i].getY(), existingTree50.BspTree.Root);
             //}
 
@@ -121,12 +129,10 @@ namespace BSPTreeGUI.Helper
             stopWatch.Reset();
             stopWatch.Start();
 
-            //for (int i = 0; i < fivehundred.Length; i++)
-            //{
+
             existingTree500.search2(target1X, target1Y, existingTree500.BspTree.Root, new List<Node>());
             existingTree500.search2(target2X, target2Y, existingTree500.BspTree.Root, new List<Node>());
-            //existingTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), existingTree500.BspTree.Root);
-            //}
+            existingTree500.search2(target3X, target3Y, existingTree500.BspTree.Root, new List<Node>());
 
             stopWatch.Stop();
         }
@@ -141,8 +147,7 @@ namespace BSPTreeGUI.Helper
             //{
             newTree5.search2(target1X, target1Y, newTree5.BspTree.Root, new List<Node>());
             newTree5.search2(target2X, target2Y, newTree5.BspTree.Root, new List<Node>());
-            //newTree5.search2(five[i].getX(), five[i].getY(), newTree5.BspTree.Root);
-            //}
+            newTree5.search2(target3X, target3Y, newTree5.BspTree.Root, new List<Node>());
 
             stopWatch.Stop();
         }
@@ -152,12 +157,10 @@ namespace BSPTreeGUI.Helper
             stopWatch.Start();
 
             QuickSort newTree50 = new QuickSort(fifty);
-            //for (int i = 0; i < fifty.Length; i++)
-            //{
+
             newTree50.search2(target1X, target1Y, newTree50.BspTree.Root, new List<Node>());
             newTree50.search2(target2X, target2Y, newTree50.BspTree.Root, new List<Node>());
-            //newTree50.search2(fifty[i].getX(), fifty[i].getY(), newTree50.BspTree.Root);
-            //}
+            newTree50.search2(target3X, target3Y, newTree50.BspTree.Root, new List<Node>());
 
             stopWatch.Stop();
         }
@@ -167,12 +170,10 @@ namespace BSPTreeGUI.Helper
             stopWatch.Start();
 
             QuickSort newTree500 = new QuickSort(fivehundred);
-            //for (int i = 0; i < fivehundred.Length; i++)
-            //{
+
             newTree500.search2(target1X, target1Y, newTree500.BspTree.Root, new List<Node>());
             newTree500.search2(target2X, target2Y, newTree500.BspTree.Root, new List<Node>());
-            //newTree500.search2(fivehundred[i].getX(), fivehundred[i].getY(), newTree500.BspTree.Root);
-            //}
+            newTree500.search2(target3X, target3Y, newTree500.BspTree.Root, new List<Node>());
 
             stopWatch.Stop();
         }
@@ -187,7 +188,6 @@ namespace BSPTreeGUI.Helper
                 if (five[i].getX() == target1X && five[i].getY() == target1Y)
                 {
                     break;
-                    //FOund
                 }
             }
 
@@ -196,7 +196,14 @@ namespace BSPTreeGUI.Helper
                 if (five[i].getX() == target2X && five[i].getY() == target2Y)
                 {
                     break;
-                    //FOund
+                }
+            }
+
+            for (int i = 0; i < five.Length; i++)
+            {
+                if (five[i].getX() == target3X && five[i].getY() == target3Y)
+                {
+                    break;
                 }
             }
 
@@ -212,7 +219,6 @@ namespace BSPTreeGUI.Helper
                 if (fifty[i].getX() == target1X && fifty[i].getY() == target1Y)
                 {
                     break;
-                    //FOund
                 }
             }
 
@@ -221,7 +227,14 @@ namespace BSPTreeGUI.Helper
                 if (fifty[i].getX() == target2X && fifty[i].getY() == target2Y)
                 {
                     break;
-                    //FOund
+                }
+            }
+
+            for (int i = 0; i < fifty.Length; i++)
+            {
+                if (fifty[i].getX() == target3X && fifty[i].getY() == target3Y)
+                {
+                    break;
                 }
             }
 
@@ -237,7 +250,6 @@ namespace BSPTreeGUI.Helper
                 if (fivehundred[i].getX() == target1X && fivehundred[i].getY() == target1Y)
                 {
                     break;
-                    //FOund
                 }
             }
 
@@ -246,7 +258,14 @@ namespace BSPTreeGUI.Helper
                 if (fivehundred[i].getX() == target2X && fivehundred[i].getY() == target2Y)
                 {
                     break;
-                    //FOund
+                }
+            }
+
+            for (int i = 0; i < fivehundred.Length; i++)
+            {
+                if (fivehundred[i].getX() == target3X && fivehundred[i].getY() == target3Y)
+                {
+                    break;
                 }
             }
 
