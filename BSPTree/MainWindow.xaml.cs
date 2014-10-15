@@ -79,11 +79,6 @@ namespace BSPTreeGUI
 
             bm.benchMark3c();
             Console.WriteLine("3c: 500 Game objects. Time elapsed: " + bm.stopWatch.ElapsedNanoSeconds + " nanoseconds");
-
-            bm.benchMark4a();
-            bm.benchMark4b();
-            bm.benchMark4c();
-            bm.benchMark4d();
         }
 
         private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
